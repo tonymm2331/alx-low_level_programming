@@ -1,13 +1,20 @@
 #include "main.h"
 
 /**
+<<<<<<< HEAD
  * *main - prints the word _putchar
  * *
  * *Return: 0 on success execution.
  **/
+=======
+*main - prints the word _putchar
+*
+*Return: 0 on success execution.
+*/
+>>>>>>> d3703d3a2ff1eb0819ec975e056b2edfdc04211e
 
 int main(void)
-{ 
+{
 	char s[] = "_putchar";
 	int i = 0;
 
