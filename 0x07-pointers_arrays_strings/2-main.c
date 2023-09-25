@@ -12,10 +12,9 @@ int main(void)
 	char *f;
 
 	f = _strchr(s, 'l');
-
-	if (f != NULL)
+	if (f != NULL)	
 	{
-	printf("%s\n", f);
+		printf("%s\n", f);
 	}
-	return (0);
+return (0);
 }
