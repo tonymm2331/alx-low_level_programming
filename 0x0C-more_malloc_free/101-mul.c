@@ -11,21 +11,30 @@ int main(int argc, char **argv) {
 
   // Check if the arguments are positive integers.
   for (int i = 1; i < 3; i++) {
-    if (!strspn(argv[i], "0123456789")) {
-      printf("Error: Argument %d is not a positive integer.\n", i);
-      exit(98);
+    for (int j = 0; argv[i][j] != '\0'; j++) {
+      if (!isdigit(argv[i][j])) {
+        printf("Error: Argument %d is not a positive integer.\n", i);
+        exit(98);
+      }
     }
   }
 
   // Convert the arguments to integers.
-  int num1 = atoi(argv[1]);
-  int num2 = atoi(argv[2]);
+  long long num1 = strtoll(argv[1], NULL, 10);
+  long long num2 = strtoll(argv[2], NULL, 10);
+
+  // Check if the result is too large to be represented by an integer.
+  if (num1 * num2 > LLONG_MAX) {
+    printf("Error: Product is too large to be represented by an integer.\n");
+    exit(98);
+  }
 
   // Multiply the two numbers.
-  int product = num1 * num2;
+  long long product = num1 * num2;
 
   // Print the result.
-  printf("%d\n", product);
+  printf("%lld\n", product);
 
   return 0;
 }
+
