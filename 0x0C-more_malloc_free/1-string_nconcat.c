@@ -1,42 +1,46 @@
-char *string_nconcat(char *s1, char *s2, unsigned int n) {
-  """Concatenates two strings.
+#include "main.h"
 
-  Args:
-    s1: The first string.
-    s2: The second string.
-    n: The number of bytes to copy from s2.
+/**
+ * string_nconcat - a function that concatenates two strings.
+ *
+ * @s1: first char
+ * @s2: secound char
+ * @n: unsigned int
+ *
+ * Return: If the function fails, it should return NULL
+ */
+char *string_nconcat(char *s1, char *s2, unsigned int n)
+{
+	unsigned int x, y, z;
+	char *s;
 
-  Returns:
-    A pointer to a newly allocated space in memory, which contains s1, followed by
-    the first n bytes of s2, and null terminated.
-    If the function fails, it should return NULL.
-    If n is greater or equal to the length of s2 then use the entire string s2.
-    if NULL is passed, treat it as an empty string.
-  """
-
-  if (s1 == NULL) {
-    s1 = "";
-  }
-  if (s2 == NULL) {
-    s2 = "";
-  }
-
-  size_t s1_len = strlen(s1);
-  size_t s2_len = strlen(s2);
-
-  if (n >= s2_len) {
-    n = s2_len;
-  }
-
-  char *result = malloc(s1_len + n + 1);
-  if (result == NULL) {
-    return NULL;
-  }
-
-  memcpy(result, s1, s1_len);
-  memcpy(result + s1_len, s2, n);
-  result[s1_len + n] = '\0';
-
-  return result;
+	if (s1 == NULL)
+	{
+		x = 0;
+	}
+	else
+	{
+		for (x = 0; s1[x]; ++x)
+		;
+	}
+	if (s2 == NULL)
+	{
+		y = 0;
+	}
+	else
+	{
+		for (y = 0; s2[y]; ++y)
+		;
+	}
+	if (y > n)
+		y = n;
+	s = malloc(sizeof(char) * (x + y + 1));
+	if (s == NULL)
+		return (NULL);
+	for (z = 0; z < x; z++)
+		s[z] = s1[z];
+	for (z = 0; z < y; z++)
+		s[z + x] = s2[z];
+	s[x + y] = '\0';
+	return (s);
 }
-
