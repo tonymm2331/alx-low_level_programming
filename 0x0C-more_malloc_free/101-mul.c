@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char **argv) {
   // Check if the number of arguments is correct.
@@ -10,11 +11,9 @@ int main(int argc, char **argv) {
 
   // Check if the arguments are positive integers.
   for (int i = 1; i < 3; i++) {
-    for (int j = 0; argv[i][j] != '\0'; j++) {
-      if (!isdigit(argv[i][j])) {
-        printf("Error: Argument %d is not a positive integer.\n", i);
-        exit(98);
-      }
+    if (!strspn(argv[i], "0123456789")) {
+      printf("Error: Argument %d is not a positive integer.\n", i);
+      exit(98);
     }
   }
 
@@ -30,4 +29,3 @@ int main(int argc, char **argv) {
 
   return 0;
 }
-
