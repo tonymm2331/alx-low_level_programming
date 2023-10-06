@@ -1,19 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char **argv) {
-  if (argc != 3) {
-    printf("Error: Incorrect number of arguments.\n");
-    exit(98);
-  }
+int is_digit(char c) {
+    return (c >= '0' && c <= '9');
+}
 
-  long long num1 = strtoll(argv[1], NULL, 10);
-  long long num2 = strtoll(argv[2], NULL, 10);
+int main(int argc, char *argv[]) {
+    char *num1_str;
+    char *num2_str;
+    long num1, num2, result;
+    int i;
 
-  long long product = num1 * num2;
+    if (argc != 3) {
+        printf("Error\n");
+        return 98;
+    }
 
-  printf("%lld\n", product);
+    num1_str = argv[1];
+    num2_str = argv[2];
 
-  return 0;
+    for (i = 0; num1_str[i] != '\0'; i++) {
+        if (!is_digit(num1_str[i])) {
+            printf("Error\n");
+            return 98;
+        }
+    }
+
+    for (i = 0; num2_str[i] != '\0'; i++) {
+        if (!is_digit(num2_str[i])) {
+            printf("Error\n");
+            return 98;
+        }
+    }
+
+    num1 = atol(num1_str);
+    num2 = atol(num2_str);
+
+    result = num1 * num2;
+
+    printf("%ld\n", result);
+
+    return 0;
 }
 
