@@ -1,28 +1,34 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-void print_opcodes(int n_bytes) {
-  if (n_bytes < 0) {
-    printf("Error\n");
-    exit(2);
-  }
+/**
+ * main - prints its own opcodes
+ *
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: int
+ */
+int main(int argc, char *argv[])
+{
+	int i, (*a)(int, char **) = main;
 
-  unsigned char *opcodes = (unsigned char *)main;
-  for (int i = 0; i < n_bytes; i++) {
-    printf("%02x", opcodes[i]);
-  }
-  printf("\n");
+	if (argc != 2)
+	{
+		printf("Error\n");
+		exit(1);
+	}
+	if (atoi(argv[1]) < 0)
+	{
+		printf("Error\n");
+		exit(2);
+	}
+	printf("%.2x", *(unsigned char *)a);
+	a++;
+	for (i = 1; i < atoi(argv[1]); i++)
+	{
+		printf(" %.2x", *(unsigned char *)a);
+		a++;
+	}
+	printf("\n");
+	return (0);
 }
-
-int main(int argc, char **argv) {
-  if (argc != 2) {
-    printf("Usage: ./main number_of_bytes\n");
-    exit(1);
-  }
-
-  int n_bytes = atoi(argv[1]);
-  print_opcodes(n_bytes);
-
-  return 0;
-}
-
